@@ -418,127 +418,72 @@ try{restore(JSON.parse(localStorage.getItem(KEY)))}catch(e){}
 $$('.ed').forEach(e=>e.contentEditable='false');try{const m=JSON.parse(localStorage.getItem('invite-music'));if(m)setSrc(m.src,m.name)}catch(e){}ui();mapApply();mapMode();idb.get('music').then(v=>{if(v&&v.blob){setSrc(URL.createObjectURL(v.blob),v.name);ui()}}).catch(()=>{});tick();sc.scrollTop=0;
 
 /* export current invitation as a fixed, self-contained HTML */
-async function exportHtml(){
-  const state=snapshot();
-  let music=null;
+function exportHtml(){
   try{
-    const v=await idb.get('music');
-    if(v&&v.blob){
-      music={data:await new Promise((res,rej)=>{
-        const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(v.blob)
-      }),name:v.name||'Music'};
-    }
-  }catch(e){}
-  if(!music && musicSrc && /^data:audio\//.test(musicSrc)){
-    music={data:musicSrc,name:musicName||'Music'};
+    setEdit(false);
+    const state=snapshot();
+
+    /* Build the exported document from the current DOM, but store the
+       customization state as JavaScript inside the file itself. This avoids
+       relying on localStorage, which is unreliable for downloaded file:// HTML
+       on some mobile browsers. */
+    const html=document.documentElement.outerHTML;
+    const stateLiteral=JSON.stringify(state)
+      .replace(/\\/g,'\\\\')
+      .replaceAll('</script','<\\/script');
+
+    const exportCss='<style id="export-mode">'+
+      '#tools,#photoTools,#cdTools,#mapTools,#musicSheet,.addev,.del{display:none!important}'+
+      '#edit,#save,#reset,#exportHtml,#musicBtn{display:none!important}'+
+      'body.editing .ed{outline:none!important;cursor:default!important}'+
+      '</style>';
+
+    /* Do not freeze the cover/scratch/reveal state that happens to be visible
+       when Export is pressed. The exported page always starts fresh. */
+    let out='<!DOCTYPE html>\\n'+html;
+    out=out.replace('</head>',exportCss+'</head>');
+    out=out.replace(/<div id="cover"([^>]*) class="[^"]*open[^"]*"([^>]*)>/i,
+                    '<div id="cover"$1$2>');
+    out=out.replace(/<div id="mw"([^>]*) class="[^"]*done[^"]*"([^>]*)>/i,
+                    '<div id="mw"$1$2>');
+
+    /* Embedded state + a tiny override of the normal restore call. */
+    const seed='<script>window.__EXPORTED_STATE='+stateLiteral+';<\\/script>';
+    out=out.replace(
+      '<script>const $=s=>document.querySelector(s);',
+      seed+'<script>const $=s=>document.querySelector(s);'
+    );
+    out=out.replace(
+      "try{restore(JSON.parse(localStorage.getItem(KEY)))}catch(e){}",
+      "try{restore(window.__EXPORTED_STATE)}catch(e){}"
+    );
+
+    /* Force the exported page to be non-editable even if the original saved
+       browser state had editing enabled. */
+    out=out.replace(
+      "const KEY='invite-v1';",
+      "const KEY='invite-v1';editing=false;"
+    );
+
+    const blob=new Blob([out],{type:'text/html;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download='invitation.html';
+    a.setAttribute('download','invitation.html');
+    a.style.position='fixed';
+    a.style.left='-9999px';
+    document.body.appendChild(a);
+
+    /* Keep this directly inside the button's synchronous click path. */
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    toast('HTML exported ✓');
+  }catch(e){
+    console.error('Export failed:',e);
+    toast('Export failed — please try again');
   }
-
-  const doc=document.cloneNode(true);
-
-  /* The live page reveals slide contents only after IntersectionObserver adds
-     `.in` to the currently visible slide. A cloned DOM preserves that
-     transient state, which would make every other exported slide invisible.
-     Force all reveal elements visible in the exported copy. */
-  doc.querySelectorAll('.slide').forEach(sl=>sl.classList.add('in'));
-  doc.querySelectorAll('.rv').forEach(e=>{
-    e.style.opacity='1';
-    e.style.transform='none';
-    e.style.filter='none';
-  });
-
-  const main=[...doc.scripts].find(s=>s.textContent.includes("const KEY='invite-v1'"));
-  if(!main){toast('Export failed: script not found');return}
-
-  /* Keep the controls as invisible compatibility elements so the existing
-     application script can initialize without null-reference errors. */
-  const tools=doc.querySelector('#tools');
-  if(tools){
-    tools.querySelector('#edit').style.display='none';
-    tools.querySelector('#save').style.display='none';
-    tools.querySelector('#reset').style.display='none';
-    tools.querySelector('#exportHtml').style.display='none';
-    tools.querySelector('#musicBtn').style.display='';
-  }
-
-  /* The exported invitation has music playback, but no music editor. */
-  const ms=doc.querySelector('#musicSheet');
-  if(ms)ms.remove();
-  ['#photoTools','#cdTools','#mapTools'].forEach(s=>doc.querySelectorAll(s).forEach(e=>e.remove()));
-  doc.querySelectorAll('.addev,.del,#addEv,#addPhoto,#delPhoto,#file,#mapFile,#songFile,#songUrl,#useUrl,#upSong,#defSong,#closeM')
-    .forEach(e=>e.remove());
-
-  doc.body.classList.remove('editing');
-  doc.querySelectorAll('.ed').forEach(e=>e.removeAttribute('contenteditable'));
-
-  /* Remove the editor behaviour and replace local persistence with the
-     exact state captured at export time. */
-  let s=main.textContent;
-  const stateJS=JSON.stringify(state);
-  const musicJS=music?JSON.stringify(music):'null';
-
-  s=s.replace(
-    /try\{restore\(JSON\.parse\(localStorage\.getItem\(KEY\)\)\)\}catch\(e\)\{\}/,
-    `try{restore(window.__EXPORTED_STATE||null)}catch(e){}`
-  );
-  s=s.replace(
-    /try\{const m=JSON\.parse\(localStorage\.getItem\('invite-music'\)\);if\(m\)setSrc\(m\.src,m\.name\)\}catch\(e\)\{\}ui\(\);mapApply\(\);mapMode\(\);idb\.get\('music'\)\.then\(v=>\{if\(v&&v\.blob\)\{setSrc\(URL\.createObjectURL\(v\.blob\),v\.name\);ui\(\)\}\}\)\.catch\(\(\)=>\{\}\);tick\(\);sc\.scrollTop=0;/,
-    `try{if(window.__EXPORTED_MUSIC)setSrc(window.__EXPORTED_MUSIC.data,window.__EXPORTED_MUSIC.name)}catch(e){}ui();mapApply();mapMode();tick();sc.scrollTop=0;`
-  );
-
-  /* Prevent editing mode from ever being entered in the exported copy. */
-  s=s.replace(
-    `$('#edit').onclick=()=>setEdit(!editing);`,
-    `$('#edit').onclick=()=>{};`
-  );
-  s=s.replace(
-    `$('#save').onclick=()=>`,
-    `$('#save').onclick=()=>{};/*`
-  );
-  /* The previous replacement leaves the original save handler after the
-     semicolon. Comment it out up to the reset handler. */
-  s=s.replace(
-    `$('#save').onclick=()=>{};/*{setEdit(false);`,
-    `$('#save').onclick=()=>{};/*`
-  );
-  const resetMarker=`$('#reset').onclick=()=>`;
-  const shareMarker=`$('#share').onclick=async()=>`;
-  const savePos=s.indexOf(`$('#save').onclick=`);
-  const b=s.indexOf(resetMarker);
-  if(savePos>=0&&b>savePos){
-    s=s.slice(0,savePos)+`$('#save').onclick=()=>{};\n`+s.slice(b);
-  }
-  const r=s.indexOf(resetMarker);
-  const sh=s.indexOf(shareMarker);
-  if(r>=0&&sh>r){
-    s=s.slice(0,r)+`$('#reset').onclick=()=>{};\n`+s.slice(sh);
-  }
-
-  main.textContent=s;
-
-  /* Inject state before the application script executes. */
-  const pre=doc.createElement('script');
-  pre.textContent=`window.__EXPORTED_STATE=${stateJS};window.__EXPORTED_MUSIC=${musicJS};`;
-  main.parentNode.insertBefore(pre,main);
-
-  /* Remove Export/Customize controls from the exported visual UI. */
-  const exportedTools=doc.querySelector('#tools');
-  if(exportedTools){
-    exportedTools.querySelector('#edit')?.remove();
-    exportedTools.querySelector('#save')?.remove();
-    exportedTools.querySelector('#reset')?.remove();
-    exportedTools.querySelector('#exportHtml')?.remove();
-    exportedTools.querySelector('#musicBtn')?.remove();
-    if(!exportedTools.children.length)exportedTools.remove();
-  }
-
-  const out='<!DOCTYPE html>\n'+doc.documentElement.outerHTML;
-  const blob=new Blob([out],{type:'text/html;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const downloadLink=document.createElement('a');
-  downloadLink.href=url;downloadLink.download='invitation.html';
-  document.body.appendChild(downloadLink);downloadLink.click();downloadLink.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),10000);
-  toast('HTML exported ✓');
 }
 $('#exportHtml').onclick=exportHtml;
 
