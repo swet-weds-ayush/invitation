@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ananya &amp; Arjun – Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#4a0a14;--cream:#fff4ec;--card:#f6dcd4;--line:#c9a15a;--brown:#9b1b30;--ink:#3a1218;--soft:#a06a6e;
+--serif:'Cormorant Garamond','Noto Serif',Georgia,serif;--sans:'Montserrat',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:radial-gradient(ellipse at 15% 0%,#d63a52aa,transparent 55%),radial-gradient(ellipse at 100% 100%,#f0a35e44,transparent 50%),radial-gradient(ellipse at 50% 50%,#7d1424,#2c050c 95%);font-family:var(--serif);color:var(--ink);display:flex;justify-content:center;overflow:hidden;
+padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+#app{position:relative;z-index:1;width:100%;max-width:430px;height:100%;display:flex;flex-direction:column;gap:10px;padding:10px}
+#stage{position:relative;flex:1;min-height:0}
+.card{position:absolute;inset:0;border-radius:26px;background:radial-gradient(circle at 50% 0%,#b8283f,#8a1629 55%,#5e0d1b);box-shadow:0 14px 40px #1d0207aa,0 0 0 1px #e7c27a66,inset 0 0 0 2px #fff8;overflow:hidden}
+.flower{position:absolute;width:150px;height:150px;opacity:.9;pointer-events:none}
+.f1{top:6px;left:6px}.f2{bottom:6px;right:6px;transform:rotate(180deg)}
+.slide{position:relative;min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:104px 38px 72px}
+.eyebrow{font-family:var(--sans);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--brown);line-height:1.8}
+.rule{width:80%;max-width:230px;display:flex;align-items:center;gap:8px;margin:10px 0 18px;color:var(--line);font-size:9px;justify-content:center}
+.rule::before,.rule::after{content:"";height:1px;background:var(--line);flex:1}
+.names{font-size:46px;line-height:1.05;font-weight:400;color:#7d1424}
+.amp{font-style:italic;color:var(--soft);font-size:26px;display:block}
+.small{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:18px;line-height:1.9}
+.foot{position:absolute;bottom:32px;font-family:var(--sans);font-size:10px;color:var(--soft);letter-spacing:.06em;left:84px;right:128px;text-align:center;line-height:1.5}
+/* date medallion */
+.medal{width:190px;height:240px;border-radius:50%;border:2px solid var(--line);background:#fffaf0aa;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 0 0 6px #fbe3dc,inset 0 0 0 7px var(--line)}
+.medal .d{font-size:68px;line-height:1}.medal .m{font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:12px;margin-top:8px}
+.medal .y{font-family:var(--sans);font-size:12px;letter-spacing:.2em;margin-top:4px}
+.btn{font-family:var(--sans);font-size:12px;border:0;border-radius:99px;padding:11px 18px;background:#fffaf0;color:var(--ink);box-shadow:0 2px 8px #5a0a1a30;cursor:pointer}
+.btn.dark{background:var(--brown);color:#fff}
+/* photo */
+.arch{width:200px;height:270px;border-radius:100px 100px 6px 6px;border:4px solid #fffaf0;box-shadow:0 0 0 1px var(--line),0 8px 20px #5a0a1a40;overflow:hidden;background:linear-gradient(#f0c9c3,#d79a99);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:11px;color:var(--brown)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.cap{display:flex;align-items:center;gap:12px;margin-top:14px;font-style:italic;font-size:15px}
+.cap button{background:none;border:0;font-size:18px;color:var(--brown);cursor:pointer}
+/* events */
+#events{width:100%;max-height:230px;overflow:auto;display:flex;flex-direction:column;gap:10px;margin-top:12px;text-align:left;padding-bottom:6px}
+.ev{background:#fffaf0;border-radius:14px;padding:11px 13px;box-shadow:0 2px 8px #5a0a1a24;position:relative}
+.ev .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.ev b{font-size:17px;font-weight:700;font-family:'Noto Serif',serif}
+.ev .t{font-family:var(--sans);font-size:10px;background:#f9e3dc;border-radius:99px;padding:4px 9px;white-space:nowrap}
+.ev .meta{font-family:var(--sans);font-size:10px;color:var(--soft);margin-top:3px}
+.ev p{font-family:var(--sans);font-size:11px;color:var(--soft);margin:6px 0}
+.ev a{font-family:var(--sans);font-size:10.5px;color:var(--ink);text-decoration:none;display:inline-block;border:1px solid var(--line);border-radius:99px;padding:4px 10px;margin-top:2px}
+.del{display:none;position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:0;background:#b4533f;color:#fff;font-size:13px;cursor:pointer}
+.venue{background:#fffaf0;border-radius:99px;padding:7px 18px;font-weight:700;font-size:14px;box-shadow:0 2px 8px #5a0a1a24}
+.venue small{display:block;font-family:var(--sans);font-size:8.5px;letter-spacing:.14em;color:var(--soft);font-weight:400}
+/* rsvp */
+.field{width:100%;border:1px solid var(--line);background:#fffaf0cc;border-radius:12px;padding:12px;font:13px var(--sans);color:var(--ink);margin-bottom:10px}
+.yn{display:flex;gap:10px;width:100%;margin-bottom:10px}
+.yn button{flex:1;border:1px solid var(--line);background:#fffaf0cc;border-radius:12px;padding:12px 4px;font:500 14px var(--sans);cursor:pointer;color:var(--ink)}
+.yn button.sel{background:#f3c9c4;border-color:var(--brown)}
+.quote{font-size:21px;line-height:1.4;font-family:'Noto Serif',serif;font-style:italic}
+/* cover */
+#cover{position:absolute;inset:0;z-index:20;border-radius:26px;overflow:hidden;cursor:pointer;transition:opacity .4s .8s,visibility 0s 1.2s}
+#cover .door{position:absolute;top:0;bottom:0;width:50%;transition:transform 1s cubic-bezier(.7,0,.3,1);background:linear-gradient(90deg,#a32035,#7d1424);box-shadow:inset 0 0 0 3px #e7c27a88,inset 0 0 40px #3a060e88}
+#cover .l{left:0}#cover .r{right:0;background:linear-gradient(90deg,#7d1424,#6a0f1e)}
+#cover.open .l{transform:translateX(-101%)}#cover.open .r{transform:translateX(101%)}
+#cover.open{opacity:0;visibility:hidden;pointer-events:none}
+.seal{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:92px;height:118px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3cf,#d9b36a);box-shadow:0 6px 16px #5a3e2a66;display:flex;align-items:center;justify-content:center;text-align:center;font-size:20px;line-height:1.1;transition:opacity .3s;z-index:2}
+#cover.open .seal{opacity:0}
+.tap{position:absolute;left:50%;top:60%;transform:translateX(-50%);z-index:2;font-size:15px;letter-spacing:.06em}
+/* controls */
+.bar{background:#fffaf0cc;border-radius:99px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px #5a0a1a26}
+.bar .btn{box-shadow:none;background:transparent;padding:9px 8px;font-size:11.5px}
+.bar .btn.dark{background:var(--brown)}
+.dots{position:absolute;right:-7px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:6px}.dots i{width:4px;height:4px;border-radius:4px;background:#e7c27a66;transition:.4s}.dots i.on{height:18px;background:#e7c27a}
+.btn[disabled]{opacity:.35;pointer-events:none}
+#tools{justify-content:center;gap:2px}
+#tools .btn.act{background:var(--brown);color:#fff}
+body.editing .ed{outline:1px dashed #b4533f99;outline-offset:3px;border-radius:3px;cursor:text}
+body.editing .del{display:block}
+.addev,#cdTools,#photoTools,#mapTools,#cdDone{display:none}
+body.editing .addev{display:inline-block;margin-top:6px}
+body.editing #cdTools,body.editing #photoTools,body.editing #mapTools,body.editing #cdDone{display:block}
+
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#3b2d25;color:#fff;font:12px var(--sans);padding:9px 16px;border-radius:99px;opacity:0;transition:opacity .3s;pointer-events:none}
+#toast.on{opacity:1}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* scroll + reveal */
+#scroller{position:absolute;inset:0;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none;border-radius:26px}
+#scroller::-webkit-scrollbar{display:none}
+body.editing #scroller{scroll-snap-type:y proximity}
+.rv{opacity:0;transform:translateY(34px) scale(.97);filter:blur(6px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1),filter .9s}
+.slide.in .rv{opacity:1;transform:none;filter:none;transition-delay:calc(var(--i,0)*.15s)}
+.hint{margin-top:22px;font:10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--brown);display:flex;flex-direction:column;align-items:center}
+.hint i{font-style:normal;font-size:22px;animation:bob 1.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(7px)}}
+/* background */
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(#e7c27a66 1px,transparent 1.6px) 0 0/38px 38px,radial-gradient(#ffd9a055 1px,transparent 1.4px) 19px 19px/38px 38px;animation:twinkle 5s ease-in-out infinite alternate;pointer-events:none}
+@keyframes twinkle{from{opacity:.12}to{opacity:.4}}
+.petal{position:fixed;top:-6vh;border-radius:100% 0 100% 0;background:radial-gradient(circle at 30% 30%,#ff9aa8,#c2263e);pointer-events:none;z-index:0;animation:fall linear infinite}
+@keyframes fall{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}10%{opacity:.85}100%{transform:translate3d(var(--dx),112vh,0) rotate(600deg);opacity:.15}}
+@media(prefers-reduced-motion:reduce){.petal,body::before,.hint i{animation:none}.rv{opacity:1;transform:none;filter:none}}
+/* countdown, map, music */
+.cd{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin:6px 0 16px}
+.cd div{background:#fffaf0;border-radius:18px;padding:16px 6px 12px;border:1px solid var(--line);box-shadow:0 4px 12px #5a0a1a22}
+.cd b{display:block;font-size:44px;font-weight:600;color:#7d1424;line-height:1;font-variant-numeric:tabular-nums}
+.cd span{display:block;font:10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-top:8px}
+.msg{font-style:italic;font-size:19px;color:var(--brown)}
+#cdTools,#mapTools{width:100%;margin-top:14px;font:11px var(--sans);color:var(--brown);text-align:left}
+#cdTools div{display:flex;gap:8px;margin-top:4px}#cdTools .field,#mapTools .field{margin:0}
+a.btn{display:inline-block;text-decoration:none}
+.mapwrap{position:relative;width:100%;height:200px;border-radius:18px;overflow:hidden;border:3px solid #fffaf0;box-shadow:0 0 0 1px var(--line),0 6px 18px #5a0a1a40;margin:14px 0 12px;background:#f0d6d0}
+.mapwrap iframe{width:100%;height:100%;border:0;pointer-events:none}.mapwrap.live iframe{pointer-events:auto}
+.maphint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font:10px var(--sans);background:#fffaf0e8;border-radius:99px;padding:4px 12px;pointer-events:none;white-space:nowrap}
+.mapwrap.live .maphint{display:none}
+.mbtns{display:flex;gap:8px;justify-content:center}.mbtns .btn{font-size:12px}
+.mute{position:absolute;top:24px;right:26px;z-index:15;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fffaf0e0;font-size:15px;cursor:pointer;box-shadow:0 2px 8px #5a0a1a40}
+#musicSheet{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);width:min(370px,94vw);background:#fffaf0;border-radius:20px;padding:16px;box-shadow:0 10px 40px #000b;z-index:50;display:none;font:12px var(--sans);color:var(--ink)}
+#musicSheet.on{display:block}#musicSheet p{color:var(--soft);margin:4px 0 12px}#musicSheet .field{margin:10px 0 8px}
+#musicSheet .row{display:flex;gap:8px;flex-wrap:wrap}#musicSheet .btn{border:1px solid var(--line)}#musicSheet .btn.dark{border-color:var(--brown)}
+/* parents + scratch */
+.parents{display:flex;width:100%;margin-top:26px}
+.par{flex:1;padding:0 8px}.par+.par{border-left:1px solid var(--line)}
+.par .eyebrow{font-size:9px;margin-bottom:7px}.pn{font-size:16px;line-height:1.3}
+.medalwrap{position:relative;width:190px;height:240px}
+#scratch{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;touch-action:none;cursor:grab;transition:opacity .9s;animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #e7c27acc}100%{box-shadow:0 0 0 20px #e7c27a00}}
+#mw.done #scratch{opacity:0;pointer-events:none;animation:none}
+body.editing #scratch{display:none}
+.scr-cap{font:10.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--brown);margin-top:16px}
+#mw.done~.scr-cap{display:none}body.editing .scr-cap{display:block!important}
+/* arch panel, lanterns, bouquets */
+.panel{position:absolute;inset:0;display:flex;flex-direction:column;pointer-events:none}
+.archtop{flex:none;aspect-ratio:360/260;margin-top:10px}
+.archbody{flex:1;margin:0 calc(6.11% - 1px) 22px;background:linear-gradient(#fbdcd5,#f6cdc7);border:2px solid var(--line);border-top:0;border-radius:0 0 20px 20px}
+.lw{position:absolute;top:0;left:var(--x);width:28px;margin-left:-14px;transform-origin:50% 0;animation:sway var(--t,5s) ease-in-out infinite alternate;pointer-events:none;filter:drop-shadow(0 0 4px #ffc85a66)}
+.chain{margin:0 auto;width:2px;height:calc(var(--y)*1dvh);background:repeating-linear-gradient(180deg,#e7c27a 0 5px,#a8742c 5px 7px)}
+.lantern{display:block;width:28px;height:56px}
+@keyframes sway{from{transform:rotate(2.4deg)}to{transform:rotate(-2.4deg)}}
+.flr{position:absolute;bottom:14px;pointer-events:none;filter:drop-shadow(0 4px 6px #5a0a1a30)}
+.fr{right:6px;bottom:8px;width:118px}.fl2{left:6px;bottom:8px;width:70px;transform:scaleX(-1)}
+@media(prefers-reduced-motion:reduce){.lw{animation:none}}
+/* rangoli, bookmark, card petals */
+.rangw{position:absolute;left:50%;bottom:46px;width:250px;height:250px;margin-left:-125px;opacity:.1;pointer-events:none;animation:spin 140s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cp{position:absolute;top:-16px;border-radius:100% 0 100% 0;pointer-events:none;opacity:0;animation:cfall linear infinite}
+@keyframes cfall{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}10%{opacity:.7}90%{opacity:.7}100%{transform:translate3d(var(--dx),calc(100dvh - 40px),0) rotate(540deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.cp{display:none}.rangw{animation:none}}
+@media(max-height:700px){.names{font-size:40px}.amp{font-size:22px}.parents{margin-top:16px}.small{margin-top:12px}}
+@media(max-height:620px){.hint{display:none}}
+/* popper + map photo */
+.pop{position:absolute;bottom:8px;font-size:36px;z-index:41;pointer-events:none;transform-origin:50% 100%;animation:popin 1.9s ease-out forwards}
+.pop.l{left:8px}.pop.r{right:8px;--f:-1}
+@keyframes popin{0%{transform:scale(0,0) rotate(-20deg);opacity:0}18%{transform:scale(calc(var(--f,1)*1.4),1.4) rotate(8deg);opacity:1}35%{transform:scale(calc(var(--f,1)),1)}80%{opacity:1}100%{transform:scale(calc(var(--f,1)),1) translateY(14px);opacity:0}}
+.mapwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.mapwrap.photo{cursor:pointer}.mapwrap.photo img{display:block}.mapwrap.photo iframe{display:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="lg" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#fff8d6"/><stop offset=".6" stop-color="#ffd06a"/><stop offset="1" stop-color="#e29a2b"/></radialGradient>
+<radialGradient id="pg" cx="0" cy="0" r="50" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e79c9c"/><stop offset=".5" stop-color="#f8d6d0"/><stop offset="1" stop-color="#fff7f0"/></radialGradient>
+<g id="lantern"><circle cx="18" cy="3" r="2.5" fill="none" stroke="#e7c27a" stroke-width="1.2"/><path d="M18 5V9" stroke="#e7c27a"/><path d="M9 17Q18 5 27 17Z" fill="#c98a2b"/><rect x="8" y="17" width="20" height="3.5" rx="1" fill="#a86d1a"/>
+<path d="M9.5 20.5H26.5L28.5 46Q18 54 7.5 46Z" fill="url(#lg)" stroke="#a86d1a"/><path d="M14 21L13 48M18 21V51M22 21L23 48" stroke="#a86d1a" stroke-width=".8" opacity=".5"/><rect x="9" y="47" width="18" height="3.5" rx="1" fill="#a86d1a"/><path d="M18 51V66" stroke="#e7c27a" stroke-width="1.4"/><circle cx="18" cy="68" r="2.6" fill="#e7c27a"/></g>
+<g id="pe" stroke="#d9a39d" stroke-width=".8" fill="url(#pg)"><g id="pp"><ellipse cy="-26" rx="16" ry="26"/><ellipse cy="-26" rx="16" ry="26" transform="rotate(60)"/><ellipse cy="-26" rx="16" ry="26" transform="rotate(120)"/><ellipse cy="-26" rx="16" ry="26" transform="rotate(180)"/><ellipse cy="-26" rx="16" ry="26" transform="rotate(240)"/><ellipse cy="-26" rx="16" ry="26" transform="rotate(300)"/></g>
+<g transform="scale(.62) rotate(30)"><use href="#pp"/></g><circle r="6" fill="#f0c36a" stroke="none"/><circle cx="2" cy="-2" r="1.6" fill="#c98a2b" stroke="none"/></g>
+<g id="cluster"><path d="M20 232C30 182 70 162 112 172C92 202 62 227 20 232Z" fill="#6f7f4a"/><path d="M118 240C120 200 152 170 204 172C198 207 166 234 118 240Z" fill="#58683a"/>
+<path d="M62 215C84 150 122 92 152 36" stroke="#7a4a3a" stroke-width="2" fill="none"/><g fill="#d93f58"><circle cx="152" cy="36" r="4.5"/><circle cx="143" cy="52" r="4"/><circle cx="160" cy="54" r="4"/><circle cx="130" cy="70" r="4.5"/><circle cx="148" cy="76" r="3.5"/><circle cx="118" cy="88" r="4"/><circle cx="106" cy="106" r="4.5"/><circle cx="124" cy="108" r="3.5"/><circle cx="94" cy="124" r="4"/></g>
+<g transform="translate(150 172) scale(1.15)"><use href="#pe"/></g><g transform="translate(168 92) scale(.85)"><use href="#pe"/></g><g transform="translate(66 196) scale(.75)"><use href="#pe"/></g></g>
+<g id="rang" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><circle r="47"/><circle r="43" stroke-dasharray=".1 4.2" stroke-width="2.4"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(0)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(30)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(60)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(90)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(120)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(150)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(180)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(210)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(240)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(270)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(300)" fill="currentColor" fill-opacity=".35"/><path d="M0 -41C8 -34 8 -26 0 -19C-8 -26 -8 -34 0 -41Z" transform="rotate(330)" fill="currentColor" fill-opacity=".35"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(15)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(45)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(75)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(105)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(135)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(165)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(195)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(225)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(255)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(285)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(315)"/><circle cy="-16" r="1.6" fill="currentColor" stroke="none" transform="rotate(345)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(0)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(45)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(90)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(135)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(180)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(225)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(270)"/><path d="M0 -14C5 -10 5 -5 0 -2C-5 -5 -5 -10 0 -14Z" transform="rotate(315)"/><circle r="2.4" fill="currentColor"/></g>
+<linearGradient id="bmg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8283f"/><stop offset="1" stop-color="#7d1424"/></linearGradient>
+</defs></svg>
+<div id="app">
+ <div id="stage">
+  <div class="dots" id="dots"></div>
+  <button class="mute" id="mute" aria-label="Music on/off">🔊</button>
+  <!-- COVER -->
+  <div id="cover"><div class="door l"></div><div class="door r"></div>
+   <div class="seal"><span class="ed" data-k="seal">A<br>&amp;<br>A</span></div>
+   <button class="btn tap" id="tapBtn"><span class="ed" data-k="tap">✦ Tap to open ✦</span></button>
+  </div>
+
+  <div class="card" id="card">
+   <div class="panel"><div class="archtop"><svg viewBox="0 0 360 260" preserveAspectRatio="none" width="100%" height="100%"><path d="M22 260V180A40 40 0 0 1 70 128A34 34 0 0 1 116 86A28 28 0 0 1 156 56C168 40 178 30 180 8C182 30 192 40 204 56A28 28 0 0 1 244 86A34 34 0 0 1 290 128A40 40 0 0 1 338 180V260" fill="#fbdcd5" stroke="#c9a15a" stroke-width="2" stroke-linejoin="round"/></svg></div><div class="archbody"></div></div>
+   <svg class="rangw" viewBox="-50 -50 100 100" style="color:#b8283f"><use href="#rang"/></svg>
+   <div class="lw" style="--x:6.5%;--y:20;--t:5.5s"><div class="chain"></div><svg class="lantern" viewBox="0 0 36 72"><use href="#lantern"/></svg></div>
+   <div class="lw" style="--x:93.5%;--y:25;--t:6s"><div class="chain"></div><svg class="lantern" viewBox="0 0 36 72"><use href="#lantern"/></svg></div>
+   <svg class="flr fr" viewBox="0 0 220 240"><use href="#cluster"/></svg>
+   <svg class="flr fl2" viewBox="0 0 220 240"><use href="#cluster"/></svg>
+
+   <div id="scroller">
+   <!-- 1 intro -->
+   <section class="slide">
+    <div class="eyebrow ed" data-k="s1a" style="margin-bottom:30px">Together<br>with our families</div>
+    <div class="names"><span class="ed" data-k="n1">Ananya</span><span class="amp ed" data-k="amp">&amp;</span><span class="ed" data-k="n2">Arjun</span></div>
+    <div class="small ed" data-k="s1b">We invite you to celebrate our wedding</div>
+    <div class="parents">
+     <div class="par"><div class="eyebrow ed" data-k="pb0">Bride’s parents</div><div class="pn ed" data-k="pb1">Mr. Rajesh Nair<br>&amp; Mrs. Meera Nair</div></div>
+     <div class="par"><div class="eyebrow ed" data-k="pg0">Groom’s parents</div><div class="pn ed" data-k="pg1">Mr. Suresh Menon<br>&amp; Mrs. Lakshmi Menon</div></div>
+    </div>
+    <div class="hint"><span class="ed" data-k="hint">Scroll down</span><i>⌄</i></div>
+    <div class="foot ed" data-k="foot1">Made with love ♡</div>
+   </section>
+
+   <!-- 2 date -->
+   <section class="slide">
+    <div class="eyebrow ed" data-k="s2a" style="margin-bottom:22px">Our<br>wedding day</div>
+    <div class="medalwrap" id="mw"><div class="medal"><div class="d ed" data-k="d">08</div><div class="m ed" data-k="m">NOVEMBER</div><div class="y ed" data-k="y">2026</div></div><canvas id="scratch" tabindex="0" role="button" aria-label="Scratch to reveal the wedding date"></canvas></div>
+    <div class="scr-cap ed" data-k="scap">✦ Scratch to reveal the date ✦</div>
+    <div class="small ed" data-k="s2b" style="font-family:var(--serif);font-size:17px;letter-spacing:.04em;text-transform:none">Sunday · 10:30 AM</div>
+    <button class="btn" id="ics" style="margin-top:18px">📅 <span class="ed" data-k="ics">Save the date</span></button>
+   </section>
+
+   <!-- 3 photos -->
+   <section class="slide">
+    <div class="eyebrow ed" data-k="s3a" style="margin-bottom:18px">Our<br>moments</div>
+    <div class="arch" id="arch">Add your photo</div>
+    <div class="cap"><button id="pp">‹</button><span class="ed" data-k="cap">Forever begins in Kovalam</span><button id="pn">›</button></div>
+    <div id="photoTools"><button class="btn dark" id="addPhoto" style="margin-top:10px">+ Add / replace photo</button> <button class="btn" id="delPhoto" style="margin-top:10px">Remove</button></div>
+    <input type="file" id="file" accept="image/*" hidden>
+    <div class="foot" style="bottom:40px">Tap photo for full view</div>
+   </section>
+
+   <!-- 4 celebration -->
+   <section class="slide" style="justify-content:flex-start;padding-top:114px">
+    <div style="font-size:26px;font-style:italic" class="ed" data-k="s4a">The</div>
+    <div class="eyebrow ed" data-k="s4b" style="font-size:15px;letter-spacing:.16em;margin-top:-4px">Celebration</div>
+    <div class="venue" style="margin-top:12px"><span class="ed" data-k="v1">📍 The Leela, Kovalam</span><small class="ed" data-k="v2">THIRUVANANTHAPURAM, KERALA</small></div>
+    <div id="events">
+     <div class="ev"><button class="del">×</button><div class="top"><b class="ed">Haldi &amp; Mehendi</b><span class="t ed">09:30 AM</span></div><div class="meta ed">Nov 07, 2026</div><p class="ed">Traditional auspicious turmeric &amp; henna ceremony with family</p><a class="ed" href="#">📍 View Location</a></div>
+     <div class="ev"><button class="del">×</button><div class="top"><b class="ed">Sacred Wedding Ceremony</b><span class="t ed">10:30 AM</span></div><div class="meta ed">Nov 08, 2026</div><p class="ed">Sacred muhurtham, vows &amp; exchange of floral garlands</p><a class="ed" href="#">📍 View Location</a></div>
+     <div class="ev"><button class="del">×</button><div class="top"><b class="ed">Wedding Reception</b><span class="t ed">06:30 PM</span></div><div class="meta ed">Nov 08, 2026</div><p class="ed">An evening of dinner, music &amp; dancing</p><a class="ed" href="#">📍 View Location</a></div>
+    </div>
+    <button class="btn dark addev" id="addEv">+ Add event</button>
+    <div class="foot ed" data-k="foot4" style="bottom:28px">♛ We look forward to celebrating together</div>
+   </section>
+
+   <!-- 5 countdown -->
+   <section class="slide">
+    <div class="eyebrow ed" data-k="c1">Counting down<br>to our big day</div><div class="rule">◆</div>
+    <div class="cd"><div><b id="cdD">00</b><span class="ed" data-k="cl1">Days</span></div><div><b id="cdH">00</b><span class="ed" data-k="cl2">Hours</span></div><div><b id="cdM">00</b><span class="ed" data-k="cl3">Minutes</span></div><div><b id="cdS">00</b><span class="ed" data-k="cl4">Seconds</span></div></div>
+    <div class="msg ed" data-k="cmsg">Until we say “I do”</div>
+    <div class="msg ed" id="cdDone" data-k="cdone" style="font-size:22px;margin-top:10px">Today we celebrate! ♡</div>
+    <div id="cdTools">Wedding date &amp; time (drives the countdown and calendar file)<div><input id="iso" class="field" type="date" value="2026-11-08"><input id="tm" class="field" type="time" value="10:30"></div></div>
+   </section>
+
+   <!-- 6 map -->
+   <section class="slide" style="justify-content:flex-start;padding-top:150px;overflow-y:auto;scrollbar-width:none">
+    <div class="eyebrow ed" data-k="m0" style="font-size:12px">Find us</div><div class="rule" style="margin-bottom:12px">◆</div>
+    <div class="venue"><span class="ed" data-k="mv1">📍 The Leela, Kovalam</span><small class="ed" data-k="mv2">THIRUVANANTHAPURAM, KERALA</small></div>
+    <div class="mapwrap" id="mapwrap"><img id="mapPhoto" alt="Venue"><iframe id="mapf" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Venue map"></iframe><div class="maphint">Tap map to explore</div></div>
+    <div class="mbtns"><a class="btn dark" id="mOpen" target="_blank" rel="noopener">📍 <span class="ed" data-k="mo">Open in Maps</span></a><a class="btn" id="mDir" target="_blank" rel="noopener">➤ <span class="ed" data-k="md">Directions</span></a></div>
+    <div id="mapTools">Venue on Google Maps: place name, address, or an embed link<input class="field" id="mapq" style="margin:4px 0 8px" value="The Leela Kovalam, Thiruvananthapuram"><button class="btn dark" id="mapGo">Update map</button> <button class="btn" id="mapPhotoBtn">🖼 Photo for this box</button> <button class="btn" id="mapPhotoDel">Use live map</button><input type="file" id="mapFile" accept="image/*" hidden></div>
+   </section>
+
+   <!-- 6 thanks -->
+   <section class="slide">
+    <div class="eyebrow ed" data-k="s6a" style="font-size:12px">With gratitude</div><div class="rule">◆</div>
+    <div class="quote ed" data-k="q">“Thank you for being part of our love story and blessing our new beginning.”</div>
+    <div class="ed" data-k="sig" style="font-size:24px;color:var(--soft);margin-top:18px">With love, Ananya &amp; Arjun</div>
+    <button class="btn dark" id="top" style="margin-top:22px">↑ <span class="ed" data-k="top">Back to top</span></button>
+    <div class="foot ed" data-k="foot6">Crafted with love</div>
+   </section>
+   </div>
+  </div>
+ </div>
+
+ <div class="bar" id="tools"><button class="btn" id="edit">✎ Customize</button><button class="btn" id="save">💾 Save</button><button class="btn" id="share">⤴ Share</button><button class="btn" id="musicBtn">♫ Music</button><button class="btn" id="reset" title="Reset to defaults">⟳</button></div>
+</div>
+<div id="toast"></div>
+<div id="musicSheet"><b style="font-size:14px">Background music</b><p>Now: <span id="musicName">Default soft melody</span></p>
+ <div class="row"><button class="btn dark" id="upSong">⬆ Upload from device</button><button class="btn" id="defSong">Use default</button><button class="btn" id="closeM">Done</button></div>
+ <input type="file" id="songFile" accept="audio/*,.mp3,.m4a,.aac,.wav,.ogg" hidden><input class="field" id="songUrl" placeholder="…or paste a direct MP3 link"><button class="btn" id="useUrl">Use link</button></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const slides=$$('.slide'), dots=$('#dots'), sc=$('#scroller'); let idx=0, editing=false, photos=[], pi=0, rsvpYes=true;
+slides.forEach(()=>dots.append(document.createElement('i')));
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1800)}
+slides.forEach(sl=>{let n=0;[...sl.children].forEach(c=>{if(c.type==='file')return;c.classList.add('rv');c.style.setProperty('--i',n++)})});
+const io=new IntersectionObserver(es=>es.forEach(e=>{e.target.classList.toggle('in',e.isIntersecting);if(!e.isIntersecting)e.target.querySelectorAll('.live').forEach(x=>x.classList.remove('live'));
+ if(e.isIntersecting){idx=slides.indexOf(e.target);[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===idx))}}),{root:sc,threshold:.55});
+slides.forEach(sl=>io.observe(sl));
+$('#top').onclick=()=>{if(!editing)sc.scrollTo({top:0,behavior:'smooth'})};
+// petals
+for(let k=0;k<7;k++){const p=document.createElement('div'),w=8+Math.random()*10;p.className='petal';
+ p.style.cssText=`left:${Math.random()*100}vw;width:${w}px;height:${w*1.3}px;animation-duration:${9+Math.random()*10}s;animation-delay:-${Math.random()*18}s;--dx:${(Math.random()-.5)*160}px`;document.body.append(p)}
+const cg=['radial-gradient(circle at 30% 30%,#ffd9dc,#f08a97)','radial-gradient(circle at 30% 30%,#fff3ef,#f2b4b4)','radial-gradient(circle at 30% 30%,#ff9aa8,#c2263e)'];
+for(let k=0;k<9;k++){const p=document.createElement('div'),w=8+Math.random()*7;p.className='cp';
+ p.style.cssText=`left:${5+Math.random()*90}%;width:${w}px;height:${w*1.3}px;background:${cg[k%3]};animation-duration:${16+Math.random()*14}s;animation-delay:-${Math.random()*24}s;--dx:${(Math.random()-.5)*120}px`;$('#card').insertBefore(p,sc)}
+$('#cover').onclick=()=>{if(!editing){$('#cover').classList.add('open');play()}};
+
+function setEdit(on){editing=on;document.body.classList.toggle('editing',on);$('#edit').classList.toggle('act',on);
+ $$('.ed').forEach(e=>e.contentEditable=on?'true':'false');
+ if(on){$('#cover').classList.add('open');toast('Tap any text to edit it')}}
+$('#edit').onclick=()=>setEdit(!editing);
+$$('a.ed, .ev a').forEach(a=>a.addEventListener('click',e=>{if(editing)e.preventDefault()}));
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.contains('ed')&&!e.shiftKey){e.preventDefault();e.target.blur()}});
+document.addEventListener('paste',e=>{if(e.target.classList&&e.target.classList.contains('ed')){e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))}});
+
+/* events */
+function bindDel(){$$('.del').forEach(b=>b.onclick=()=>b.parentElement.remove())}bindDel();
+$('#addEv').onclick=()=>{const d=document.createElement('div');d.className='ev';
+ d.innerHTML='<button class="del">×</button><div class="top"><b class="ed">New Event</b><span class="t ed">12:00 PM</span></div><div class="meta ed">Date</div><p class="ed">Describe this event</p><a class="ed" href="#">📍 View Location</a>';
+ $('#events').append(d);d.querySelectorAll('.ed').forEach(e=>e.contentEditable='true');bindDel();d.querySelector('a').onclick=e=>e.preventDefault()};
+
+/* photos */
+function showPhoto(){const a=$('#arch');a.innerHTML=photos.length?'<img src="'+photos[pi]+'" alt="">':'Add your photo'}
+$('#pp').onclick=()=>{if(photos.length){pi=(pi-1+photos.length)%photos.length;showPhoto()}};
+$('#pn').onclick=()=>{if(photos.length){pi=(pi+1)%photos.length;showPhoto()}};
+$('#addPhoto').onclick=()=>$('#file').click();
+$('#delPhoto').onclick=()=>{photos.splice(pi,1);pi=0;showPhoto()};
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{
+ const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,700/im.width);c.width=im.width*s;c.height=im.height*s;
+  c.getContext('2d').drawImage(im,0,0,c.width,c.height);photos.push(c.toDataURL('image/jpeg',.8));pi=photos.length-1;showPhoto()};im.src=r.result};r.readAsDataURL(f);e.target.value=''};
+$('#arch').onclick=()=>{if(editing)$('#file').click();else if(photos.length)window.open(photos[pi])};
+
+/* calendar */
+$('#ics').onclick=()=>{if(editing)return;const d=($('#iso').value||'2026-11-08').replace(/-/g,'');
+ const t='BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:'+$('[data-k=n1]').textContent+' & '+$('[data-k=n2]').textContent+' Wedding\nDTSTART;VALUE=DATE:'+d+'\nEND:VEVENT\nEND:VCALENDAR';
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/calendar'}));a.download='wedding.ics';a.click()};
+
+/* music */
+const idb={open(){return new Promise((res,rej)=>{const r=indexedDB.open('invite',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})},
+ async run(m,k,v){const d=await this.open();return new Promise((res,rej)=>{const t=d.transaction('kv',m==='get'?'readonly':'readwrite'),o=t.objectStore('kv'),q=m==='set'?o.put(v,k):m==='del'?o.delete(k):o.get(k);t.oncomplete=()=>res(q.result);t.onerror=()=>rej(t.error)})},
+ set(k,v){return this.run('set',k,v)},get(k){return this.run('get',k)},del(k){return this.run('del',k)}};
+let musicSrc=null,musicName='Default soft melody',playing=false,ctx,synthTimer;
+const au=new Audio();au.loop=true;
+function ui(){$('#mute').textContent=playing?'🔊':'🔇';$('#musicName').textContent=musicName}
+function synthStart(){ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();ctx.resume();
+ const notes=[261.6,293.7,329.6,392,440,523.3,392,329.6];let n=0;const g=ctx.createGain();g.gain.value=.12;g.connect(ctx.destination);
+ const tick=()=>{const f=notes[n%8]*(n%16<8?1:.75);n++;[f,f*2.005].forEach((fr,k)=>{const o=ctx.createOscillator(),e=ctx.createGain(),t=ctx.currentTime;
+  o.frequency.value=fr;e.gain.setValueAtTime(0,t);e.gain.linearRampToValueAtTime(k?.25:.7,t+.05);e.gain.exponentialRampToValueAtTime(.001,t+2.4);o.connect(e);e.connect(g);o.start();o.stop(t+2.5)})};
+ tick();synthTimer=setInterval(tick,900)}
+function play(){playing=true;if(musicSrc)au.play().catch(()=>{playing=false;ui();toast('Tap 🔊 to start the music')});else if(!synthTimer)synthStart();ui()}
+function pause(){playing=false;au.pause();clearInterval(synthTimer);synthTimer=null;ui()}
+function setSrc(src,name){musicSrc=src;musicName=name;if(src)au.src=src}
+function setMusic(src,name){pause();setSrc(src,name);play()}
+$('#mute').onclick=()=>playing?pause():play();
+$('#musicBtn').onclick=()=>$('#musicSheet').classList.toggle('on');
+$('#closeM').onclick=()=>$('#musicSheet').classList.remove('on');
+$('#upSong').onclick=()=>$('#songFile').click();
+$('#songFile').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;setMusic(URL.createObjectURL(f),f.name);idb.set('music',{blob:f,name:f.name}).then(()=>toast('Song added & saved on this device ✓')).catch(()=>toast('Song added (could not be kept for next time)'))};
+$('#useUrl').onclick=()=>{const u=$('#songUrl').value.trim();if(u){idb.del('music').catch(()=>{});setMusic(u,u.split('/').pop().split('?')[0]||'Music link')}};
+$('#defSong').onclick=()=>{idb.del('music').catch(()=>{});setMusic(null,'Default soft melody')};
+
+/* map */
+let mapQ='The Leela Kovalam, Thiruvananthapuram';
+function mapApply(){let v=mapQ.trim(),m=v.match(/<iframe[^>]+src=["']([^"']+)/i);if(m)v=m[1];
+ const fb=($('[data-k=mv1]').textContent+' '+$('[data-k=mv2]').textContent).replace('📍','').trim();let emb=null,q=v,open=null;
+ if(/^https?:\/\//.test(v)){open=v;if(/\/maps\/embed/.test(v)){emb=v;q=fb;open=null}else{const p=v.match(/\/place\/([^\/@?]+)/),qq=v.match(/[?&]q=([^&]+)/);
+  try{q=p?decodeURIComponent(p[1].replace(/\+/g,' ')):qq?decodeURIComponent(qq[1].replace(/\+/g,' ')):fb}catch(e){q=fb}}}
+ $('#mapf').src=emb||'https://www.google.com/maps?q='+encodeURIComponent(q)+'&output=embed';
+ $('#mOpen').href=open||'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+ $('#mDir').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)}
+$('#mapGo').onclick=()=>{mapQ=$('#mapq').value;mapApply();toast('Map updated')};
+let mapPhoto=null;
+function mapMode(){$('#mapwrap').classList.toggle('photo',!!mapPhoto);$('#mapPhoto').src=mapPhoto||'';$('.maphint').textContent=mapPhoto?'📍 Tap to open in Google Maps':'Tap map to explore';$('#mapPhotoDel').style.display=mapPhoto?'':'none'}
+$('#mapwrap').onclick=()=>{if(mapPhoto){editing?$('#mapFile').click():window.open($('#mOpen').href,'_blank')}else $('#mapwrap').classList.add('live')};
+$('#mapPhotoBtn').onclick=()=>$('#mapFile').click();
+$('#mapPhotoDel').onclick=()=>{mapPhoto=null;mapMode()};
+$('#mapFile').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+ const c=document.createElement('canvas'),k=Math.min(1,900/im.width);c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);mapPhoto=c.toDataURL('image/jpeg',.82);mapMode();toast('Photo added — tap Save to keep it')};im.src=r.result};r.readAsDataURL(f)};
+['#mOpen','#mDir'].forEach(k=>$(k).addEventListener('click',e=>{if(editing)e.preventDefault()}));
+document.addEventListener('click',e=>{const a=e.target.closest('.ev a');if(!a)return;e.preventDefault();if(!editing)window.open($('#mOpen').href,'_blank')});
+
+/* countdown */
+function tick(){const t=new Date(($('#iso').value||'2026-11-08')+'T'+($('#tm').value||'10:30'));let d=t-Date.now();const done=d<=0;if(done)d=0;
+ [Math.floor(d/864e5),Math.floor(d/36e5)%24,Math.floor(d/6e4)%60,Math.floor(d/1e3)%60].forEach((v,j)=>$('#cd'+'DHMS'[j]).textContent=String(v).padStart(2,'0'));
+ $('#cdDone').style.display=done?'block':''}
+setInterval(tick,1000);
+/* party popper */
+function popSound(){if(!playing)return;try{ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();ctx.resume();const n=ctx.sampleRate*.18,b=ctx.createBuffer(1,n,ctx.sampleRate),d=b.getChannelData(0);
+ for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,3);const src=ctx.createBufferSource(),g=ctx.createGain();src.buffer=b;g.gain.value=.5;src.connect(g);g.connect(ctx.destination);src.start()}catch(e){}}
+function confetti(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ const card=$('#card');let cv=$('#confetti');if(!cv){cv=document.createElement('canvas');cv.id='confetti';cv.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:40';card.append(cv)}
+ const dpr=Math.min(devicePixelRatio||1,2),W=card.clientWidth,H=card.clientHeight;cv.width=W*dpr;cv.height=H*dpr;const x=cv.getContext('2d');x.scale(dpr,dpr);
+ const cols=['#d62f48','#ffd36b','#fff4ec','#ff8aa0','#e7c27a','#b8283f','#ffffff'];let P=[];
+ const burst=(sx,sy,a0,sp,n,v0)=>{for(let k=0;k<n;k++){const a=a0+(Math.random()-.5)*sp,v=v0*(.45+Math.random()*.7);
+  P.push({x:sx,y:sy,vx:Math.cos(a)*v,vy:Math.sin(a)*v,r:Math.random()*6,vr:(Math.random()-.5)*.4,w:5+Math.random()*6,h:3+Math.random()*4,c:cols[k%cols.length],t:Math.random()<.2?2:Math.random()<.5?1:0,l:0,life:150+Math.random()*60})}};
+ const shoot=()=>{burst(10,H-10,-Math.PI/3,.9,70,19);burst(W-10,H-10,-2*Math.PI/3,.9,70,19);burst(W/2,H*.38,0,6.28,60,10)};
+ [['l',''],['r','']].forEach(a=>{const e=document.createElement('span');e.className='pop '+a[0];e.textContent='🎉';card.append(e);setTimeout(()=>e.remove(),2000)});
+ shoot();setTimeout(shoot,450);
+ (function loop(){x.clearRect(0,0,W,H);P=P.filter(p=>p.l<p.life);
+  P.forEach(p=>{p.l++;p.vy+=.28;p.vx*=.985;p.vy*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.globalAlpha=Math.min(1,(p.life-p.l)/40);x.fillStyle=x.strokeStyle=p.c;x.save();x.translate(p.x,p.y);x.rotate(p.r);
+   if(p.t===1){x.beginPath();x.arc(0,0,p.h*.8,0,7);x.fill()}else if(p.t===2){x.lineWidth=2;x.beginPath();x.moveTo(0,0);x.bezierCurveTo(8,-6,-8,-12,0,-20);x.stroke()}else x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()});
+  if(P.length)requestAnimationFrame(loop);else x.clearRect(0,0,W,H)})()}
+
+/* scratch to reveal */
+(function(){const c=$('#scratch'),mw=$('#mw'),W=190,H=240,dpr=Math.min(devicePixelRatio||1,2);
+ c.width=W*dpr;c.height=H*dpr;const x=c.getContext('2d');x.scale(dpr,dpr);
+ const g=x.createLinearGradient(0,0,W,H);[[0,'#b8863b'],[.35,'#f6e2a8'],[.6,'#d4a64f'],[1,'#a8742c']].forEach(a=>g.addColorStop(a[0],a[1]));
+ x.fillStyle=g;x.fillRect(0,0,W,H);
+ for(let k=0;k<900;k++){x.fillStyle='rgba('+(Math.random()<.5?'255,255,255':'120,70,20')+','+Math.random()*.3+')';x.fillRect(Math.random()*W,Math.random()*H,1.6,1.6)}
+ x.strokeStyle='#fff8';x.lineWidth=2;x.beginPath();x.ellipse(W/2,H/2,W/2-12,H/2-12,0,0,7);x.stroke();
+ x.fillStyle='#fffbe8';x.textAlign='center';x.font='54px serif';x.fillText('✦',W/2,H/2+18);
+ let down=false,lx=0,ly=0,mv=0;
+ const pt=e=>{const r=c.getBoundingClientRect();return[(e.clientX-r.left)*W/r.width,(e.clientY-r.top)*H/r.height]};
+ const done=()=>{if(mw.classList.contains('done'))return;mw.classList.add('done');confetti();popSound();toast('💍 Save the date!')};
+ const pct=()=>{const d=x.getImageData(0,0,c.width,c.height).data;let n=0,t=0;for(let i=3;i<d.length;i+=48){t++;if(d[i]<128)n++}return n/t};
+ c.addEventListener('pointerdown',e=>{down=true;c.setPointerCapture(e.pointerId);[lx,ly]=pt(e);x.globalCompositeOperation='destination-out';x.beginPath();x.arc(lx,ly,18,0,7);x.fill()});
+ c.addEventListener('pointermove',e=>{if(!down)return;const[px,py]=pt(e);x.globalCompositeOperation='destination-out';x.lineWidth=36;x.lineCap='round';
+  x.beginPath();x.moveTo(lx,ly);x.lineTo(px,py);x.stroke();lx=px;ly=py;if(++mv%10===0&&pct()>.33)done()});
+ const up=()=>{down=false;if(pct()>.33)done()};
+ c.addEventListener('pointerup',up);c.addEventListener('pointercancel',up);
+ c.addEventListener('dblclick',done);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')done()});
+})();
+
+
+/* save / restore */
+const KEY='invite-v1';
+function snapshot(){const o={t:{},ev:$('#events').innerHTML,photos,iso:$('#iso').value,tm:$('#tm').value,mapq:mapQ,mapphoto:mapPhoto};$$('.ed[data-k]').forEach(e=>o.t[e.dataset.k]=e.innerHTML);return o}
+function restore(o){if(!o)return;for(const k in o.t){const e=$('[data-k="'+k+'"]');if(e)e.innerHTML=o.t[k]}
+ if(o.ev){$('#events').innerHTML=o.ev;bindDel();$$('#events a').forEach(a=>a.onclick=e=>{if(editing)e.preventDefault()})}
+ photos=o.photos||[];showPhoto();if(o.iso)$('#iso').value=o.iso;if(o.tm)$('#tm').value=o.tm;if(o.mapq){mapQ=o.mapq;$('#mapq').value=mapQ}if(o.mapphoto)mapPhoto=o.mapphoto}
+$('#save').onclick=()=>{setEdit(false);let mf=false;try{musicSrc&&!/^(blob|data):/.test(musicSrc)?localStorage.setItem('invite-music',JSON.stringify({src:musicSrc,name:musicName})):localStorage.removeItem('invite-music')}catch(e){mf=true}try{localStorage.setItem(KEY,JSON.stringify(snapshot()));toast(mf?'Saved (song too big to store – use a link)':'Saved on this device ✓')}catch(e){toast('Saved without photos (storage full)');localStorage.setItem(KEY,JSON.stringify({...snapshot(),photos:[]}))}};
+$('#share').onclick=async()=>{const d={title:document.title,text:'You are invited!',url:location.href};
+ try{navigator.share?await navigator.share(d):(await navigator.clipboard.writeText(location.href),toast('Link copied'))}catch(e){}};
+$('#reset').onclick=()=>{if(confirm('Reset all edits to the defaults?')){localStorage.removeItem(KEY);location.reload()}};
+try{restore(JSON.parse(localStorage.getItem(KEY)))}catch(e){}
+$$('.ed').forEach(e=>e.contentEditable='false');try{const m=JSON.parse(localStorage.getItem('invite-music'));if(m)setSrc(m.src,m.name)}catch(e){}ui();mapApply();mapMode();idb.get('music').then(v=>{if(v&&v.blob){setSrc(URL.createObjectURL(v.blob),v.name);ui()}}).catch(()=>{});tick();sc.scrollTop=0;
+</script>
+</body>
+</html>
