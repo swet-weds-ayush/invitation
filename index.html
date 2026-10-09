@@ -2,6 +2,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ayush and Swet - Wedding Invitation</title>
+<!-- GitHub Pages site: https://swet-weds-ayush.github.io/invitation/ -->
+<meta name="description" content="You're invited to celebrate Ayush and Swet's wedding on 9 December 2026.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ayush and Swet - Wedding Invitation">
+<meta property="og:description" content="You're invited to celebrate our special day ❤️">
+<meta property="og:image" content="https://swet-weds-ayush.github.io/invitation/assets/preview.jpg">
+<meta property="og:image:alt" content="Ayush and Swet - Wedding Invitation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ayush and Swet - Wedding Invitation">
+<meta name="twitter:description" content="You're invited to celebrate our special day ❤️">
+<meta name="twitter:image" content="https://swet-weds-ayush.github.io/invitation/assets/preview.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Montserrat:wght@400;500;600&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet">
 <style>
@@ -321,7 +332,7 @@ const idb={open(){return new Promise((res,rej)=>{const r=indexedDB.open('invite-
  async run(m,k,v){const d=await this.open();return new Promise((res,rej)=>{const t=d.transaction('kv',m==='get'?'readonly':'readwrite'),o=t.objectStore('kv'),q=m==='set'?o.put(v,k):m==='del'?o.delete(k):o.get(k);t.oncomplete=()=>res(q.result);t.onerror=()=>rej(t.error)})},
  set(k,v){return this.run('set',k,v)},get(k){return this.run('get',k)},del(k){return this.run('del',k)}};
 let musicSrc=null,musicName='Default soft melody',playing=false,ctx,synthTimer;
-const au=new Audio();au.loop=true;
+const au=new Audio();au.loop=true;au.preload='auto';
 function ui(){$('#mute').textContent=playing?'🔊':'🔇';$('#musicName').textContent=musicName}
 function synthStart(){ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();ctx.resume();
  const notes=[261.6,293.7,329.6,392,440,523.3,392,329.6];let n=0;const g=ctx.createGain();g.gain.value=.12;g.connect(ctx.destination);
@@ -414,9 +425,11 @@ $('#share').onclick=async()=>{const d={title:document.title,text:'You are invite
  try{navigator.share?await navigator.share(d):(await navigator.clipboard.writeText(location.href),toast('Link copied'))}catch(e){}};
 try{restore(window.__EXPORTED_STATE||(window.__EXPORTED_STANDALONE?null:JSON.parse(localStorage.getItem(KEY))))}catch(e){}
 $$('.ed').forEach(e=>e.contentEditable='false');
-if(window.__EXPORTED_STANDALONE){const em=window.__EXPORTED_STATE&&window.__EXPORTED_STATE.music;if(em&&em.src)setSrc(em.src,em.name);else setSrc(null,'Default soft melody');}
-else{try{const m=JSON.parse(localStorage.getItem('invite-music-'+FILE_SCOPE));if(m)setSrc(m.src,m.name)}catch(e){}idb.get('music').then(v=>{if(v&&v.blob){setSrc(URL.createObjectURL(v.blob),v.name);ui()}}).catch(()=>{});}
+// GitHub Pages version: always use the public asset so stale browser storage cannot swap songs.
+setSrc('./assets/music.mp3','Wedding music');
 ui();mapApply();mapMode();tick();sc.scrollTop=0;
+// Try autoplay; browsers that block audible autoplay will start it from the cover tap instead.
+au.play().then(()=>{playing=true;ui()}).catch(()=>{playing=false;ui()});
 
 </script><div class="petal" style="left: 43.7716vw; width: 14.4854px; height: 18.831px; animation-duration: 10.898s; animation-delay: -15.9735s; --dx: 1.1746384777223895px;"></div><div class="petal" style="left: 92.255vw; width: 12.3864px; height: 16.1023px; animation-duration: 16.6366s; animation-delay: -9.28387s; --dx: 16.003535868276924px;"></div><div class="petal" style="left: 3.7083vw; width: 17.3941px; height: 22.6123px; animation-duration: 18.6988s; animation-delay: -5.68015s; --dx: -18.185393856961518px;"></div><div class="petal" style="left: 18.5933vw; width: 9.99707px; height: 12.9962px; animation-duration: 11.1503s; animation-delay: -11.1999s; --dx: 20.964428455212065px;"></div><div class="petal" style="left: 88.7177vw; width: 9.92592px; height: 12.9037px; animation-duration: 14.4371s; animation-delay: -12.1536s; --dx: 1.4525404204687753px;"></div><div class="petal" style="left: 71.0243vw; width: 11.8924px; height: 15.4601px; animation-duration: 11.2365s; animation-delay: -12.4052s; --dx: -2.3487934569894797px;"></div><div class="petal" style="left: 57.2108vw; width: 15.9037px; height: 20.6748px; animation-duration: 13.3393s; animation-delay: -0.530653s; --dx: 47.30400635868886px;"></div>
 
